@@ -21,9 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity
             android:name=".SecActivity"
             android:exported="false" />
+=======
+>>>>>>> 0cb3036 (zzz)
     </application>
 
 </manifest>
