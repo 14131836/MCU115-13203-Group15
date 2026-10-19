@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="tab_start">Start</string>
+    <string name="tab_progress">Progress</string>
+    <string name="tab_result">Result</string>
+    <string name="btn_start">Start</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="status_idle">Idle</string>
+    <string name="status_preparing">Preparing...</string>
+    <string name="status_working">Working...</string>
+    <string name="status_working_format">Working... %d%%</string>
+    <string name="status_finished">背景工作結束！</string>
+    <string name="status_canceled">Canceled</string>
+</resources>
