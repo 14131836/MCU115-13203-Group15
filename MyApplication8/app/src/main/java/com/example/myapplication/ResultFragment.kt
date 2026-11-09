@@ -33,10 +33,10 @@ class ResultFragment : Fragment() {
                     binding.tvResultStatus.text = "Idle"
                 }
                 TaskStatus.PREPARING -> {
-                    binding.tvResultStatus.text = "Preparing..."
+                    binding.tvResultStatus.text = "準備中..."
                 }
                 TaskStatus.WORKING -> {
-                    binding.tvResultStatus.text = "Working..."
+                    binding.tvResultStatus.text = "工作中"
                 }
                 TaskStatus.FINISHED -> {
                     binding.tvResultStatus.text = "背景工作結束！"

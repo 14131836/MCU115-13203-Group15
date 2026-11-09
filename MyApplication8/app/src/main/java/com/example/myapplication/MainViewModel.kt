@@ -1,10 +1,12 @@
 package com.example.myapplication
 
+import android.app.Application
+import android.media.MediaPlayer
 import android.os.Handler
 import android.os.Looper
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 
 enum class TaskStatus {
     IDLE,
@@ -14,7 +16,7 @@ enum class TaskStatus {
     CANCELED
 }
 
-class MainViewModel : ViewModel() {
+class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _taskStatus = MutableLiveData<TaskStatus>(TaskStatus.IDLE)
     val taskStatus: LiveData<TaskStatus> = _taskStatus
@@ -27,11 +29,17 @@ class MainViewModel : ViewModel() {
     @Volatile
     private var workerThread: Thread? = null
 
+    private var mediaPlayer: MediaPlayer? = null
+
     fun startWork() {
         stopWorkerThread()
+        stopMusic()
 
         _taskStatus.value = TaskStatus.PREPARING
         _progress.value = 0
+
+        // Start background music when background work starts
+        playMusic()
 
         val newThread = Thread {
             val currentThread = Thread.currentThread()
@@ -40,6 +48,7 @@ class MainViewModel : ViewModel() {
                 Thread.sleep(1500)
 
                 if (currentThread != workerThread || currentThread.isInterrupted) {
+                    mainHandler.post { stopMusic() }
                     return@Thread
                 }
 
@@ -50,6 +59,7 @@ class MainViewModel : ViewModel() {
                 // Working phase: progress from 1 to 100
                 for (i in 1..100) {
                     if (currentThread != workerThread || currentThread.isInterrupted) {
+                        mainHandler.post { stopMusic() }
                         return@Thread
                     }
 
@@ -60,11 +70,13 @@ class MainViewModel : ViewModel() {
                 if (currentThread == workerThread && !currentThread.isInterrupted) {
                     postStatusIfActive(currentThread, TaskStatus.FINISHED)
                     postProgressIfActive(currentThread, 100)
+                    mainHandler.post { stopMusic() }
                 }
 
             } catch (e: InterruptedException) {
                 if (currentThread == workerThread) {
                     postStatus(TaskStatus.CANCELED)
+                    mainHandler.post { stopMusic() }
                 }
             }
         }
@@ -75,6 +87,7 @@ class MainViewModel : ViewModel() {
 
     fun cancelWork() {
         stopWorkerThread()
+        stopMusic()
         _taskStatus.value = TaskStatus.CANCELED
     }
 
@@ -86,6 +99,35 @@ class MainViewModel : ViewModel() {
             }
         }
         workerThread = null
+    }
+
+    private fun playMusic() {
+        try {
+            stopMusic()
+            val mp = MediaPlayer.create(getApplication(), R.raw.background_music)
+            if (mp != null) {
+                mediaPlayer = mp.apply {
+                    isLooping = true
+                    start()
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun stopMusic() {
+        try {
+            mediaPlayer?.let {
+                if (it.isPlaying) {
+                    it.stop()
+                }
+                it.release()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        mediaPlayer = null
     }
 
     private fun postStatusIfActive(thread: Thread, status: TaskStatus) {
@@ -113,5 +155,6 @@ class MainViewModel : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         stopWorkerThread()
+        stopMusic()
     }
 }

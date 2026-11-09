@@ -35,7 +35,7 @@ class ProgressFragment : Fragment() {
                 }
                 TaskStatus.PREPARING -> {
                     binding.circularProgressBar.progress = 0
-                    binding.tvProgressStatus.text = "Preparing..."
+                    binding.tvProgressStatus.text = "準備中..."
                 }
                 TaskStatus.WORKING -> {
                     val currProgress = viewModel.progress.value ?: 0
