@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Smart Pomodoro Focus Timer</string>
+    <string name="status_ready">Ready to Focus</string>
+    <string name="status_focusing">Focusing...</string>
+    <string name="initial_timer">00:00</string>
+    <string name="remaining_time">Remaining Time</string>
+    <string name="btn_start_focus">Start Focus</string>
+    <string name="btn_stop">STOP</string>
+    <string name="focus_session_complete">Focus Session Complete!</string>
+    <string name="great_job">Great job staying focused!</string>
+    <string name="btn_back_to_home">Back to Home</string>
+</resources>
