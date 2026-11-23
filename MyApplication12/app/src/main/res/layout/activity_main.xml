@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".MainActivity">
+
+    <!-- 主標題 (與圖片標題一致: 主系統) -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="主系統"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="#333333"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp" />
+
+    <!-- 欄位 1: 廠牌 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="廠牌："
+            android:textSize="18sp"
+            android:textColor="#333333" />
+
+        <EditText
+            android:id="@+id/ed_brand"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="請輸入廠牌"
+            android:inputType="text"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <!-- 欄位 2: 車型 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="車型："
+            android:textSize="18sp"
+            android:textColor="#333333" />
+
+        <EditText
+            android:id="@+id/ed_model"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="請輸入車型"
+            android:inputType="text"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <!-- 欄位 3: 年份 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="年份："
+            android:textSize="18sp"
+            android:textColor="#333333" />
+
+        <EditText
+            android:id="@+id/ed_year"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="請輸入年份"
+            android:inputType="number"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <!-- 欄位 4: 價格 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="24dp">
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="價格："
+            android:textSize="18sp"
+            android:textColor="#333333" />
+
+        <EditText
+            android:id="@+id/ed_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="請輸入價格"
+            android:inputType="number"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <!-- 4 個操作按鈕 (膠囊圓角型) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="24dp">
+
+        <Button
+            android:id="@+id/btn_insert"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="6dp"
+            android:text="新增"
+            android:textSize="15sp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            app:cornerRadius="22dp" />
+
+        <Button
+            android:id="@+id/btn_update"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="6dp"
+            android:text="修改"
+            android:textSize="15sp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            app:cornerRadius="22dp" />
+
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="6dp"
+            android:text="刪除"
+            android:textSize="15sp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            app:cornerRadius="22dp" />
+
+        <Button
+            android:id="@+id/btn_query"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:text="查詢"
+            android:textSize="15sp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            app:cornerRadius="22dp" />
+    </LinearLayout>
+
+    <!-- 資料清單展示區 (樣式與圖片相符) -->
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@null"
+        android:dividerHeight="0dp" />
+
+</LinearLayout>
